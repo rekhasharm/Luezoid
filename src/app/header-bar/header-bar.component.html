@@ -1,0 +1,10 @@
+<nav class="navbar fixed-top navbar-light justify-content-between">
+    <a class="navbar-brand">
+        <i class="fa fa-3x fa-ravelry" aria-hidden="true" [routerLink]="'/'"></i>
+    </a>
+    <a class="h1">LueZoid</a>
+    <span>    
+        <i class="fa fa-2x fa-shopping-cart" aria-hidden="true"></i>
+        <span class="badge badge-warning item-count">{{($cartItems | async)?.length}}</span>
+    </span>
+</nav>

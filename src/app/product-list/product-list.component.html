@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-between py-3">
+    <div class="text-muted">{{productList.length}} Records Found</div>
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="page-item" [class.disabled]="pagination.page <= 1" (click)="previousPage()">
+                <a class="page-link">Previous</a>
+            </li>
+            <li *ngFor="let item of pageArr; let i=index" class="page-item" [class.active]="pagination.page==i+1">
+                <a class="page-link">{{i+1}}</a>
+            </li>
+            <li class="page-item" [class.disabled]="pagination.page==pagination.pages" (click)="nextPage()">
+                <a class="page-link">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="d-flex flex-wrap" *ngIf="productList.length > 0; else loading">
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 pb-5 d-flex justify-content-center" *ngFor="let item of productList">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top image-size" [src]="item.bannerImage.url" alt="Card image cap" [routerLink]="['/productDetail', item.id]">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <p class="card-text">{{item.name}}</p>
+                <span class="btn btn-primary btn-rounded" (click)="addToCart(item)"> 
+                    <i class="fa fa-plus"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #loading>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</ng-template>
